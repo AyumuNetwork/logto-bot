@@ -1,0 +1,38 @@
+services:
+  bot:
+    build: .
+    restart: unless-stopped
+    env_file: .env
+    volumes:
+      - ./data:/app/data
+    expose:
+      - '8080'
+
+  caddy:
+    image: caddy:2-alpine
+    restart: unless-stopped
+    depends_on:
+      - bot
+    ports:
+      - '80:80'
+      - '443:443'
+    volumes:
+      - ./Caddyfile:/etc/caddy/Caddyfile:ro
+      - caddy_data:/data
+      - caddy_config:/config
+
+  # Optional: outbound WebSocket relay so the bot can run behind any network
+  # that can only reach this host. Enable with `docker compose --profile relay up -d`.
+  relay:
+    build: .
+    profiles: ['relay']
+    restart: unless-stopped
+    environment:
+      RELAY_PORT: 8081
+      RELAY_TOKEN: ${TELEGRAM_WS_RELAY_TOKEN:?set TELEGRAM_WS_RELAY_TOKEN}
+      RELAY_PROXY: ${HTTPS_PROXY:-}
+    command: ['node', 'dist/relayMain.js']
+
+volumes:
+  caddy_data:
+  caddy_config:

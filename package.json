@@ -1,0 +1,40 @@
+{
+  "name": "logto-bot",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "Telegram bot bridge for Logto: webhook notifications, auto binding, one-time login links, group role sync",
+  "engines": {
+    "node": ">=24"
+  },
+  "scripts": {
+    "dev": "node --env-file-if-exists=.env --import tsx src/index.ts",
+    "start": "node --env-file-if-exists=.env dist/index.js",
+    "build": "tsc -p tsconfig.build.json",
+    "typecheck": "tsc -p tsconfig.json --noEmit",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "probe": "node --env-file-if-exists=.env --import tsx scripts/probe-logto.ts",
+    "logto:setup": "node --env-file-if-exists=.env --import tsx scripts/create-logto-resources.ts",
+    "tg:webhook": "node --env-file-if-exists=.env --import tsx scripts/set-webhook.ts",
+    "smoke": "node --env-file-if-exists=.env --import tsx scripts/smoke.ts",
+    "cli": "node --env-file-if-exists=.env --import tsx src/cli/index.ts",
+    "ws-relay": "node --env-file-if-exists=.env --import tsx scripts/ws-relay.ts"
+  },
+  "dependencies": {
+    "fastify": "^5.6.1",
+    "grammy": "^1.46.0",
+    "pino": "^9.13.1",
+    "undici": "^8.12.3",
+    "ws": "^8.22.0",
+    "zod": "^4.1.12"
+  },
+  "devDependencies": {
+    "@types/node": "^24.9.2",
+    "@types/ws": "^8.18.2",
+    "pino-pretty": "^13.1.2",
+    "tsx": "^4.20.6",
+    "typescript": "^5.9.3",
+    "vitest": "^3.2.4"
+  }
+}

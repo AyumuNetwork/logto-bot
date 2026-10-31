@@ -1,0 +1,5 @@
+# Replace bot.example.com with your public hostname and set BOT_PUBLIC_URL accordingly.
+bot.example.com {
+	encode zstd gzip
+	reverse_proxy bot:8080
+}

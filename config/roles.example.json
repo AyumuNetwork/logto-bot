@@ -1,0 +1,17 @@
+{
+  "enabled": false,
+  "groups": [
+    {
+      "chatId": -1000000000000,
+      "mapping": {
+        "creator": ["REPLACE_WITH_ROLE_ID_ADMINS"],
+        "administrator": ["REPLACE_WITH_ROLE_ID_INTERNAL_USERS"],
+        "member": ["REPLACE_WITH_ROLE_ID_EXTERNAL_USERS"]
+      },
+      "customTitleMap": {
+        "核心成员": "REPLACE_WITH_ROLE_ID_VERY_INTERNAL_USERS"
+      },
+      "removeOnLeave": true
+    }
+  ]
+}

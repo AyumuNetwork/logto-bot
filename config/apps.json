@@ -1,0 +1,12 @@
+{
+  "defaultSlug": "account",
+  "targets": {
+    "account": {
+      "label": "Logto 账户中心",
+      "clientId": "cfxpfqlqtd0yr5i1yrvoc",
+      "redirectUri": "https://auth.haori.ink/",
+      "scope": "openid profile",
+      "mode": "ott"
+    }
+  }
+}
